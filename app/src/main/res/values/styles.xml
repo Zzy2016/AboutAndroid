@@ -22,16 +22,6 @@
         <!--是否模糊-->
         <item name="android:backgroundDimEnabled">false</item>
 
-
-        <!--<item name="android:windowIsFloating">true</item>  -->//浮现在Activity之上
-        <!--<item name="android:windowIsTranslucent">true</item>-->  //
-        <!--<item name="android:windowFrame">@null</item>-->  //去除边框
-        <!--<item name="android:windowNoTitle">true</item>-->  //去除标题
-        <!--<item name="android:colorBackgroundCacheHint">@null</item>--> //
-        <!--<item name="android:windowBackground">@android:color/transparent</item>-->  //背景色透明度
-        <!--<item name="android:windowContentOverlay">@null</item>-->
-        <!--<item name="android:radius">5dp</item>-->       //圆角
-
     </style>
 
 </resources>

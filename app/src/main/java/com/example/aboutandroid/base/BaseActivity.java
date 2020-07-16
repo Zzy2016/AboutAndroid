@@ -34,13 +34,14 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     public void initDialog() {
-        dialog = new Dialog(this, R.style.SampleThemeLight);
+        dialog = new Dialog(this);
         View view = LayoutInflater.from(context).inflate(R.layout.dialog1, null);
         dialog.setContentView(view);
         dialog.setCanceledOnTouchOutside(false);
         dialog.setTitle("ceshi");
 
         Window window = dialog.getWindow();
+        window.setBackgroundDrawableResource(android.R.color.transparent);
         WindowManager.LayoutParams layoutParams = window.getAttributes();
         WindowManager windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
         Display display = windowManager.getDefaultDisplay();
