@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">AboutAndroid</string>
+
+    <string-array name="splash_str">
+        <item name="str1">ceshi1</item>
+        <item name="str2">ceshi2</item>
+    </string-array>
 </resources>
