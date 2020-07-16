@@ -1,16 +1,14 @@
 package com.example.aboutandroid;
 
-import androidx.annotation.MainThread;
-import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+
+import com.example.aboutandroid.adapter.HomeListAdapter;
+import com.example.aboutandroid.base.BaseActivity;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
-import android.util.Log;
-
-import com.example.aboutandroid.adapter.HomeListAdapter;
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private RecyclerView rvHomeList;
     private HomeListAdapter adapter;
@@ -25,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         rvHomeList.setAdapter(adapter);
         rvHomeList.setLayoutManager(new LinearLayoutManager(this));
 
+        dialog.show();
 
     }
 }
