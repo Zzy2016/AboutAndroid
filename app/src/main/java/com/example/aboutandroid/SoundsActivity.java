@@ -20,7 +20,6 @@ import java.util.List;
 public class SoundsActivity extends BaseActivity {
 
     private RecyclerView rvSoundList;
-    private ContentResolver contentResolver;
 
     private List<Sound> soundList;
     private SoundsAdapter adapter;
