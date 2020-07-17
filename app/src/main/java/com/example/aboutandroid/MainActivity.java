@@ -6,6 +6,7 @@ import android.os.Handler;
 
 import com.example.aboutandroid.adapter.HomeListAdapter;
 import com.example.aboutandroid.base.BaseActivity;
+import com.example.aboutandroid.util.PermissionUtil;
 
 import java.security.Permission;
 
@@ -22,7 +23,7 @@ public class MainActivity extends BaseActivity {
     private RecyclerView rvHomeList;
     private HomeListAdapter adapter;
 
-    private String[] permissions=new String[]{};
+    private String[] permissions=new String[]{Manifest.permission.READ_EXTERNAL_STORAGE};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +37,14 @@ public class MainActivity extends BaseActivity {
 
 
 //        dialog.show();
-        doCheckPermission();
+//        doCheckPermission();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 dialog.cancel();
             }
         }, 1000);
+        PermissionUtil.checkPermissions(this,permissions);
 
     }
 
