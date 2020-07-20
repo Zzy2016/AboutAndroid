@@ -34,6 +34,7 @@ public class SoundsActivity extends BaseActivity {
         Cursor cursor = getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, null, null, MediaStore.Audio.Media.DEFAULT_SORT_ORDER);
         while (cursor.moveToNext()) {
             Log.e("sounds---->", cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DISPLAY_NAME)));
+
             Sound sound = new Sound();
             sound.setName(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DISPLAY_NAME)));
             soundList.add(sound);

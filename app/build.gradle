@@ -12,6 +12,21 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+
+
+        ndk {
+            //选择要添加的对应 cpu 类型的 .so 库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : "com.example.aboutandroid",
+                JPUSH_APPKEY : "0312f6b2f91caa432d97cf59", //JPush 上注册的包名对应的 Appkey.
+                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+        ]
+
     }
 
     buildTypes {
@@ -32,4 +47,11 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha04'
+
+    implementation "com.google.android.material:material:1.0.0"
+
+
+    implementation 'cn.jiguang.sdk:jpush:3.6.8'  // 此处以JPush 3.6.8 版本为例。
+    implementation 'cn.jiguang.sdk:jcore:2.4.0'  // 此处以JCore 2.4.0 版本为例。
+
 }

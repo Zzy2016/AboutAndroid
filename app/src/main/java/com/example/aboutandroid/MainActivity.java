@@ -8,15 +8,9 @@ import com.example.aboutandroid.adapter.HomeListAdapter;
 import com.example.aboutandroid.base.BaseActivity;
 import com.example.aboutandroid.util.PermissionUtil;
 
-import java.security.Permission;
-
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import static android.content.pm.PackageManager.PERMISSION_GRANTED;
+import cn.jpush.android.api.JPushInterface;
 
 public class MainActivity extends BaseActivity {
 
@@ -30,14 +24,17 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
+
         adapter = new HomeListAdapter(MainActivity.this);
         rvHomeList = (RecyclerView) findViewById(R.id.rvHomeList);
         rvHomeList.setAdapter(adapter);
         rvHomeList.setLayoutManager(new LinearLayoutManager(this));
 
 
-//        dialog.show();
-//        doCheckPermission();
+        dialog.show();
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -48,18 +45,9 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    public void doCheckPermission() {
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PERMISSION_GRANTED) {
 
-        } else {
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},0);
-        }
-    }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-    }
+
 }
