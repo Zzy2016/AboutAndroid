@@ -45,7 +45,9 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".SoundsActivity" />
+        <activity android:name=".SoundsActivity"
+            android:theme="@style/SoundActivityTheme"
+            />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

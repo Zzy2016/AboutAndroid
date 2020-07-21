@@ -1,49 +1,44 @@
 package com.example.aboutandroid;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.ContentResolver;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
-import com.example.aboutandroid.adapter.SoundsAdapter;
 import com.example.aboutandroid.base.BaseActivity;
-import com.example.aboutandroid.bean.Sound;
 
-import java.util.ArrayList;
-import java.util.List;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 public class SoundsActivity extends BaseActivity {
 
-    private RecyclerView rvSoundList;
 
-    private List<Sound> soundList;
-    private SoundsAdapter adapter;
+    private LinearLayout llLeft;
+    private TextView tvLeft, tvRight;
+    private DrawerLayout dl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sounds);
 
-        soundList = new ArrayList<>();
+//        llLeft = (LinearLayout) findViewById(R.id.llLeft);
 
-        Cursor cursor = getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, null, null, MediaStore.Audio.Media.DEFAULT_SORT_ORDER);
-        while (cursor.moveToNext()) {
-            Log.e("sounds---->", cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DISPLAY_NAME)));
+//        tvLeft = (TextView) findViewById(R.id.tvLeft);
+//        tvRight = (TextView) findViewById(R.id.tvRight);
+//        dl = (DrawerLayout) findViewById(R.id.dl);
+//
+//        tvLeft.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                dl.openDrawer(GravityCompat.START);
+//            }
+//        });
 
-            Sound sound = new Sound();
-            sound.setName(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DISPLAY_NAME)));
-            soundList.add(sound);
-        }
 
-        adapter = new SoundsAdapter(soundList, this);
-        rvSoundList = (RecyclerView) findViewById(R.id.rvSoundList);
-        rvSoundList.setAdapter(adapter);
-        rvSoundList.setLayoutManager(new LinearLayoutManager(this));
+
+
     }
 
 
