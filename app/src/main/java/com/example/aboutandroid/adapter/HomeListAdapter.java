@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.aboutandroid.R;
 import com.example.aboutandroid.SoundsActivity;
+import com.example.aboutandroid.TestActivity;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,16 +41,23 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Log.e("------------------>", strings[position]);
         holder.tvItem.setText(strings[position]);
+
 
 
         holder.tvItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, SoundsActivity.class);
-                context.startActivity(intent);
+                if(position==0){
+                    Intent intent = new Intent(context, TestActivity.class);
+                    context.startActivity(intent);
+                }else if(position==1){
+                    Intent intent = new Intent(context, SoundsActivity.class);
+                    context.startActivity(intent);
+                }
+
             }
         });
     }

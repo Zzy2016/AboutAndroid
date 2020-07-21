@@ -2,7 +2,7 @@
     <string name="app_name">AboutAndroid</string>
 
     <string-array name="splash_str">
-        <item name="str1">ceshi1</item>
-        <item name="str2">ceshi2</item>
+        <item name="str1">ContentProvider</item>
+        <item name="str2">Sounds</item>
     </string-array>
 </resources>
