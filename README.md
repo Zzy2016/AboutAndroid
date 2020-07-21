@@ -1,1 +1,6 @@
-# AboutAndroid
+# AboutAndroid  https://blog.csdn.net/u010356768/article/details/72822546
+1、PagerTabStrip
+   PagerTabStrip是ViewPager的一个关于当前页面、上一个页面和下一个页面的一个可交互的指示器。它经常作为ViewPager控件的一个子控件被被添加在XML布局文件中。在你的布局文件中，将它作为子控件添加在ViewPager中。
+2、PagerTitleStrip
+   PagerTitleStrip是ViewPager的一个关于当前页面、上一个页面和下一个页面的一个非交互的指示器。它经常作为ViewPager控件的一个子控件被被添加在XML布局文件中。在你的布局文件中，将它作为子控件添加在ViewPager中。
+3、DrawerLayout
