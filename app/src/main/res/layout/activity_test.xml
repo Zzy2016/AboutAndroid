@@ -17,6 +17,11 @@
 
         >
 
+        <androidx.viewpager.widget.PagerTabStrip
+            android:id="@+id/pagerTabStrip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
 
     </androidx.viewpager.widget.ViewPager>
 
@@ -27,6 +32,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/vp1"
         app:layout_constraintVertical_weight="1">
+
+        <androidx.viewpager.widget.PagerTitleStrip
+            android:id="@+id/pagerTitleStrip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </androidx.viewpager.widget.ViewPager>
 
