@@ -6,65 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".TestActivity">
 
-    <LinearLayout
-        android:layout_height="wrap_content"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vp1"
         android:layout_width="match_parent"
-        android:orientation="vertical"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/vp2"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="1"
+
         >
-        <TextView
 
-            android:id="@+id/tv1"
-            android:layout_height="50dp"
+        <androidx.viewpager.widget.PagerTabStrip
+            android:id="@+id/pagerTabStrip"
             android:layout_width="match_parent"
-            android:text="1"
-            />
-        <TextView
-
-            android:id="@+id/tv2"
-            android:layout_height="50dp"
-            android:layout_width="match_parent"
-            android:text="1"
-            />
-        <TextView
-
-            android:id="@+id/tv3"
-            android:layout_height="50dp"
-            android:layout_width="match_parent"
-            android:text="1"
-            />
-        <TextView
-
-            android:id="@+id/tv4"
-            android:layout_height="50dp"
-            android:layout_width="match_parent"
-            android:text="1"
+            android:layout_height="wrap_content"
             />
 
-    </LinearLayout>
+    </androidx.viewpager.widget.ViewPager>
 
-<!--    <androidx.viewpager.widget.ViewPager-->
-<!--        android:id="@+id/vp1"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        app:layout_constraintBottom_toTopOf="@id/vp2"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_weight="1"-->
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vp2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vp1"
+        app:layout_constraintVertical_weight="1">
 
-<!--        >-->
+        <androidx.viewpager.widget.PagerTitleStrip
+            android:id="@+id/pagerTitleStrip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-
-<!--    </androidx.viewpager.widget.ViewPager>-->
-
-<!--    <androidx.viewpager.widget.ViewPager-->
-<!--        android:id="@+id/vp2"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/vp1"-->
-<!--        app:layout_constraintVertical_weight="1">-->
-
-<!--    </androidx.viewpager.widget.ViewPager>-->
+    </androidx.viewpager.widget.ViewPager>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
