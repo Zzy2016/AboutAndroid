@@ -18,11 +18,39 @@
 
 
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tlTitle"
+            android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            app:tabMode="fixed"
+            android:background="@color/colorAccent"
+            app:tabGravity="center"
             app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="menu"
+            app:layout_constraintTop_toTopOf="@id/tabLayout"
+            app:layout_constraintBottom_toBottomOf="@id/tabLayout"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="10dp"
+            android:textSize="20sp"
+            android:textColor="@color/blue"
+            />
+
+        <TextView
+            android:id="@+id/tvSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="搜索"
+            android:textSize="20sp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tabLayout"
+            app:layout_constraintBottom_toBottomOf="@id/tabLayout"
+            />
 
         <androidx.viewpager.widget.ViewPager
             android:layout_width="match_parent"
@@ -30,14 +58,14 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tlTitle" />
+            app:layout_constraintTop_toBottomOf="@id/tabLayout" />
         
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/llLeft"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -46,13 +74,64 @@
         android:fitsSystemWindows="true"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="@color/white" />
+
         <!--fitsSystemWindows控制布局在沉浸状态时保持内容在状态栏以下-->
 
-    </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvMenuItem1"
+            android:text="夜间模式"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="200dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:paddingLeft="20dp"
+            />
+        <TextView
+            android:id="@+id/tvMenuItem2"
+            android:text="主题换肤"
+           app:layout_constraintTop_toBottomOf="@id/tvMenuItem1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:paddingLeft="20dp"
+            />
+
+        <TextView
+            android:id="@+id/tvMenuItem3"
+            android:text="定时关闭音乐"
+           app:layout_constraintTop_toBottomOf="@id/tvMenuItem2"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:paddingLeft="20dp"
+            />
+        <TextView
+            android:id="@+id/tvMenuItem4"
+            android:text="下载歌曲品质"
+            app:layout_constraintTop_toBottomOf="@id/tvMenuItem3"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:paddingLeft="20dp"
+            />
+        <TextView
+            android:id="@+id/tvMenuItem5"
+            android:text="退出"
+           app:layout_constraintTop_toBottomOf="@id/tvMenuItem4"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:paddingLeft="20dp"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!--右侧菜单-->
     <!--如果是两个抽屉那么layout_gravity属性值不能相同,即一左一右-->
