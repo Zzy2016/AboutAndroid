@@ -3,6 +3,7 @@ package com.example.aboutandroid;
 import android.Manifest;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.WindowManager;
 
 import com.example.aboutandroid.adapter.HomeListAdapter;
 import com.example.aboutandroid.base.BaseActivity;
@@ -24,6 +25,8 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
 
@@ -33,7 +36,7 @@ public class MainActivity extends BaseActivity {
         rvHomeList.setLayoutManager(new LinearLayoutManager(this));
 
 
-        dialog.show();
+//        dialog.show();
 
         new Handler().postDelayed(new Runnable() {
             @Override

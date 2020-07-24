@@ -1,17 +1,13 @@
 package com.example.aboutandroid;
 
+import android.os.Bundle;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.PagerTabStrip;
 import androidx.viewpager.widget.PagerTitleStrip;
 import androidx.viewpager.widget.ViewPager;
-
-import android.content.ContentValues;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.Bundle;
-import android.view.View;
-import android.view.ViewParent;
-import android.widget.TextView;
 
 public class TestActivity extends AppCompatActivity {
 
@@ -19,9 +15,9 @@ public class TestActivity extends AppCompatActivity {
 //    TextView tv1,tv2,tv3,tv4;
 //    Uri uri=Uri.parse("content://com.example.aboutandroid/");
 
-    PagerTabStrip pagerTabStrip;
-    PagerTitleStrip pagerTitleStrip;
-    ViewPager vp1,vp2;
+//    PagerTabStrip pagerTabStrip;
+//    PagerTitleStrip pagerTitleStrip;
+//    ViewPager vp1,vp2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,11 +63,18 @@ public class TestActivity extends AppCompatActivity {
 //                System.out.println("删除"+count);
 //            }
 //        });
-        vp1=(ViewPager)findViewById(R.id.vp1);
-        pagerTabStrip=(PagerTabStrip)findViewById(R.id.pagerTabStrip);
+//        vp1=(ViewPager)findViewById(R.id.vp1);
+//        pagerTabStrip=(PagerTabStrip)findViewById(R.id.pagerTabStrip);
+//
+//        vp2=(ViewPager)findViewById(R.id.vp2);
+//        pagerTitleStrip=(PagerTitleStrip)findViewById(R.id.pagerTitleStrip);
 
-        vp2=(ViewPager)findViewById(R.id.vp2);
-        pagerTitleStrip=(PagerTitleStrip)findViewById(R.id.pagerTitleStrip);
+
+        final RelativeLayout splashLayout = (RelativeLayout) findViewById(R.id.rl_splash);
+        RelativeLayout.LayoutParams params =
+                new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        params.addRule(RelativeLayout.ABOVE, R.id.view_divider);
+
 
 
     }
