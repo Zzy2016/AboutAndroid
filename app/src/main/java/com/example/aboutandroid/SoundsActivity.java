@@ -73,8 +73,11 @@ public class SoundsActivity extends BaseActivity implements View.OnClickListener
             }
         });
 
-        tabLayout.addTab(tabLayout.newTab().setText("测试1"));
-        tabLayout.addTab(tabLayout.newTab().setText("测试2"));
+        for(int i=0;i<getResources().getStringArray(R.array.titles).length;i++){
+            tabLayout.addTab(tabLayout.newTab().setText(getResources().getStringArray(R.array.titles)[i]));
+        }
+
+
 
         tvSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,18 +94,22 @@ public class SoundsActivity extends BaseActivity implements View.OnClickListener
         bind.tvMenuItem5.setOnClickListener(this);
 
         bind.tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-
-
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                if (tab.getText().toString().equals("测试1")) {
+                switch (tab.getText().toString()){
+                    case "我的":
+                        bind.dl.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                        break;
+                    case "发现":
+                        bind.dl.setBackgroundColor(getResources().getColor(R.color.blue));
+                        break;
+                    case "云村":
+                        bind.dl.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                        break;
+                    case "视频":
+                        bind.dl.setBackgroundColor(getResources().getColor(R.color.blue));
+                        break;
 
-                    bind.dl.setBackgroundColor(getResources().getColor(R.color.blue));
-                    Toast.makeText(SoundsActivity.this, "测试1", Toast.LENGTH_SHORT).show();
-                } else {
-
-                    bind.dl.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-                    Toast.makeText(SoundsActivity.this, "测试2", Toast.LENGTH_SHORT).show();
                 }
             }
 

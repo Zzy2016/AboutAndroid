@@ -5,4 +5,11 @@
         <item name="str1">ContentProvider</item>
         <item name="str2">Sounds</item>
     </string-array>
+
+    <string-array name="titles">
+        <item name="title1">我的</item>
+        <item name="title1">发现</item>
+        <item name="title1">云村</item>
+        <item name="title1">视频</item>
+    </string-array>
 </resources>
