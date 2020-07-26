@@ -59,6 +59,7 @@ dependencies {
 
 
     implementation 'cn.jiguang.sdk:jpush:3.6.8'  // 此处以JPush 3.6.8 版本为例。
-    implementation 'cn.jiguang.sdk:jcore:2.4.0'  // 此处以JCore 2.4.0 版本为例。
+    implementation 'cn.jiguang.sdk:jcore:2.4.0'
+    implementation 'com.google.code.gson:gson:2.8.6'// 此处以JCore 2.4.0 版本为例。
 
 }

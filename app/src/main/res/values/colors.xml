@@ -8,4 +8,6 @@
 
     <color name="red">#d20000</color>
     <color name="redStatus">#00770505</color>
+
+    <color name="black">#0B0101</color>
 </resources>

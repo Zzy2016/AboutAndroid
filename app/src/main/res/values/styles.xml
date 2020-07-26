@@ -1,23 +1,22 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+<!--    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight">
         <!-- Customize your theme here. -->
         <!--toolbar颜色-->
         <item name="colorPrimary">@color/red</item>
         <!--状态栏颜色-->
         <item name="colorPrimaryDark">@color/redStatus</item>
         <item name="colorAccent">@color/colorAccent</item>
-
-
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
-        <item name="android:fitsSystemWindows">true</item>
+
 
     </style>
 
 
-    <style name="SampleThemeLight" >
+    <style name="SampleThemeLight">
 
         <!--背景颜色及和透明程度-->
         <item name="android:windowBackground">@android:color/transparent</item>

@@ -1,59 +1,39 @@
 package com.example.aboutandroid;
 
-import android.annotation.SuppressLint;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.aboutandroid.base.BaseActivity;
-import com.example.aboutandroid.bean.Sound;
 import com.example.aboutandroid.databinding.ActivitySoundsBinding;
+import com.example.aboutandroid.util.SharedPreferencesUtil;
 import com.google.android.material.tabs.TabLayout;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 public class SoundsActivity extends BaseActivity implements View.OnClickListener {
 
 
-    private LinearLayout llLeft;
-    private TextView tvLeft, tvRight;
     private DrawerLayout dl;
-    private TextView tvMenu;
-
     private TabLayout tabLayout;
-    private TextView tvSearch;
 
 
     private ActivitySoundsBinding bind;
+
+    private boolean isNight;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        isNight=SharedPreferencesUtil.putData("isNight", true);// true 夜间  false日间
         bind = ActivitySoundsBinding.inflate(getLayoutInflater());
         setContentView(bind.getRoot());
-//        setContentView(R.layout.activity_sounds);
-
-//        llLeft = (LinearLayout) findViewById(R.id.llLeft);
-
-//        tvLeft = (TextView) findViewById(R.id.tvLeft);
-//        tvRight = (TextView) findViewById(R.id.tvRight);
-//        dl = (DrawerLayout) findViewById(R.id.dl);
-//
-//        tvLeft.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                dl.openDrawer(GravityCompat.START);
-//            }
-//        });
-
 
         initView();
 
@@ -61,25 +41,25 @@ public class SoundsActivity extends BaseActivity implements View.OnClickListener
 
 
     public void initView() {
-        tvMenu = (TextView) findViewById(R.id.tvMenu);
+
         dl = (DrawerLayout) findViewById(R.id.dl);
 
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
-        tvSearch = (TextView) findViewById(R.id.tvSearch);
+
         bind.tvMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                switchMode();
                 dl.openDrawer(GravityCompat.START);
             }
         });
 
-        for(int i=0;i<getResources().getStringArray(R.array.titles).length;i++){
+        for (int i = 0; i < getResources().getStringArray(R.array.titles).length; i++) {
             tabLayout.addTab(tabLayout.newTab().setText(getResources().getStringArray(R.array.titles)[i]));
         }
 
 
-
-        tvSearch.setOnClickListener(new View.OnClickListener() {
+        bind.tvSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(SoundsActivity.this, "search", Toast.LENGTH_LONG).show();
@@ -96,7 +76,7 @@ public class SoundsActivity extends BaseActivity implements View.OnClickListener
         bind.tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                switch (tab.getText().toString()){
+                switch (tab.getText().toString()) {
                     case "我的":
                         bind.dl.setBackgroundColor(getResources().getColor(R.color.colorAccent));
                         break;
@@ -123,29 +103,60 @@ public class SoundsActivity extends BaseActivity implements View.OnClickListener
 
             }
         });
+
+//        switchMode();
     }
 
 
     @Override
     public void onClick(View v) {
         bind.dl.closeDrawer(GravityCompat.START);
-//        switch (v.getId()) {
-//            case R.id.tvMenuItem1:
-//
-//                break;
-//            case R.id.tvMenuItem2:
-//
-//                break;
-//            case R.id.tvMenuItem3:
-//
-//                break;
-//            case R.id.tvMenuItem4:
-//
-//                break;
-//            case R.id.tvMenuItem5:
-//
-//                break;
-//
-//        }
+        switch (v.getId()) {
+            case R.id.tvMenuItem1:
+
+//                if (bind.tvMenuItem1.getText().toString().equals("夜间模式")) {
+//                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+//                    SharedPreferencesUtil.getData("isNight", false);
+//                    bind.tvMenuItem1.setText("日间模式");
+//                } else {
+//                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+//                    SharedPreferencesUtil.getData("isNight", true);
+//                    bind.tvMenuItem1.setText("夜间模式");
+//                }
+//                if(isNight){
+//                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+//                    recreate();
+//                }else {
+//                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+//                    recreate();
+//                }
+
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                recreate();
+
+                break;
+            case R.id.tvMenuItem2:
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                recreate();
+                break;
+            case R.id.tvMenuItem3:
+
+                break;
+            case R.id.tvMenuItem4:
+
+                break;
+            case R.id.tvMenuItem5:
+
+                break;
+
+        }
     }
+
+//    public void switchMode(){
+//        if(isNight){
+//            bind.tvMenuItem1.setText("日间模式");
+//        }else {
+//            bind.tvMenuItem1.setText("夜间模式");
+//        }
+//    }
 }
