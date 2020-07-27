@@ -1,10 +1,10 @@
-package com.example.aboutandroid;
+package com.example.aboutandroid.activity;
 
 import android.Manifest;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.WindowManager;
 
+import com.example.aboutandroid.R;
 import com.example.aboutandroid.adapter.HomeListAdapter;
 import com.example.aboutandroid.base.BaseActivity;
 import com.example.aboutandroid.util.PermissionUtil;

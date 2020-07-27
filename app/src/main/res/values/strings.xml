@@ -9,7 +9,15 @@
     <string-array name="titles">
         <item name="title1">我的</item>
         <item name="title1">发现</item>
-        <item name="title1">云村</item>
-        <item name="title1">视频</item>
+
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="menus">
+        <item name="menu1">menu1</item>
+        <item name="menu2">menu2</item>
+        <item name="menu3">menu3</item>
     </string-array>
 </resources>

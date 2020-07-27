@@ -25,6 +25,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:tabGravity="center"
             app:tabMode="fixed"
+            app:tabTextColor="@color/white"
             android:layout_marginTop="20dp"
             app:tabTextAppearance="@style/AboutFont" />
 
@@ -50,8 +51,10 @@
             />
 
         <androidx.viewpager.widget.ViewPager
+            android:id="@+id/vp"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:background="@color/white"
             app:layout_constraintBottom_toTopOf="@id/clBottom"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -62,6 +65,7 @@
             android:id="@+id/clBottom"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent">
 
 
@@ -116,7 +120,7 @@
             android:layout_height="50dp"
             android:gravity="center|left"
             android:paddingLeft="20dp"
-            android:text="主题换肤"
+            android:text="日间模式"
             android:textColor="@color/black"
             android:textSize="@dimen/textSize23"
             app:layout_constraintLeft_toLeftOf="parent"

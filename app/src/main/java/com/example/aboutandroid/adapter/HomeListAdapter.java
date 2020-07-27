@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.aboutandroid.R;
-import com.example.aboutandroid.SoundsActivity;
-import com.example.aboutandroid.TestActivity;
+import com.example.aboutandroid.activity.SoundsActivity;
+import com.example.aboutandroid.activity.TestActivity;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;

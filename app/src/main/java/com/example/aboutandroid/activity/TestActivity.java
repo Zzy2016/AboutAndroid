@@ -1,8 +1,10 @@
-package com.example.aboutandroid;
+package com.example.aboutandroid.activity;
 
 import android.os.Bundle;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+
+import com.example.aboutandroid.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.PagerTabStrip;

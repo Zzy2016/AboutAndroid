@@ -36,30 +36,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".activity.SearchActivity"></activity>
 
         <provider
             android:name=".test.FirstProvider"
             android:authorities="com.example.aboutandroid"
             android:exported="true" />
 
-        <activity android:name=".TestActivity">
-
-        </activity>
-
-
-        <activity
-            android:name=".SoundsActivity"
-            />
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.TestActivity"></activity>
+        <activity android:name=".activity.SoundsActivity" />
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-
-        <!-- 若您的业务中有使用极光富媒体功能，或者极光早上好功能，需要把此 Activity 的 exported 修改成 true 覆盖 jcenter 上的组件。 -->
+        </activity> <!-- 若您的业务中有使用极光富媒体功能，或者极光早上好功能，需要把此 Activity 的 exported 修改成 true 覆盖 jcenter 上的组件。 -->
         <activity
             android:name="cn.jpush.android.ui.PopWinActivity"
             android:exported="true"
@@ -89,7 +81,7 @@
         <!-- 可配置android:process参数将Service放在其他进程中；android:enabled属性不能是false -->
         <!-- 这个是自定义Service，要继承极光JCommonService，可以在更多手机平台上使得推送通道保持的更稳定 -->
         <service
-            android:name=".PushService"
+            android:name=".services.PushService"
             android:enabled="true"
             android:exported="false"
             android:process=":pushcore">
@@ -101,7 +93,7 @@
         <!-- 3.3.0开始所有事件将通过该类回调 -->
         <!-- 该广播需要继承 JPush 提供的 JPushMessageReceiver 类, 并如下新增一个 Intent-Filter -->
         <receiver
-            android:name=".MyReceiver"
+            android:name=".services.MyReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
@@ -122,9 +114,8 @@
             </intent-filter>
         </activity>
 
-
         <receiver
-            android:name=".PushMessageReceiver"
+            android:name=".services.PushMessageReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
@@ -132,9 +123,7 @@
 
                 <category android:name="${applicationId}" />
             </intent-filter>
-        </receiver>
-
-        <!-- Required. For publish channel feature -->
+        </receiver> <!-- Required. For publish channel feature -->
         <!-- JPUSH_CHANNEL 是为了方便开发者统计 APK 分发渠道。 -->
         <!-- 例如: -->
         <!-- 发到 Google Play 的 APK 可以设置为 google-play; -->
