@@ -1,53 +1,44 @@
-package com.example.aboutandroid.fragment;
+package com.example.aboutandroid.activity;
 
 import android.content.ContentResolver;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.aboutandroid.R;
+import com.example.aboutandroid.adapter.SoundsAdapter;
+import com.example.aboutandroid.base.BaseActivity;
 import com.example.aboutandroid.bean.Sound;
+import com.example.aboutandroid.databinding.ActivityLocalSoundBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+public class LocalSoundActivity extends BaseActivity {
 
-public class ListFragment extends Fragment {
-
-
+    ActivityLocalSoundBinding binding;
+    private SoundsAdapter soundsAdapter;
     private List<Sound> soundList;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_local_sound);
+        binding = ActivityLocalSoundBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         soundList = new ArrayList<>();
         getAllList();
+        soundsAdapter = new SoundsAdapter(soundList, this);
+        binding.recyclerView.setAdapter(soundsAdapter);
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list, container, false);
-    }
-
-
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser) {
-            Log.e("-------------", "ListFragment");
-        }
-    }
 
     public void getAllList() {
-        ContentResolver contentResolver = getContext().getContentResolver();
+        ContentResolver contentResolver = getContentResolver();
         Cursor cursor = contentResolver.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, null, null, null);
 //        Cursor cursor=contentResolver.query(MediaStore.Audio.Media.TITLE,null,null,null,null);
 //        Cursor cursor = contentResolver.query(Uri.parse(MediaStore.Audio.Media.DURATION), null, null, null, null);
@@ -134,6 +125,5 @@ public class ListFragment extends Fragment {
 
         }
     }
-
 
 }

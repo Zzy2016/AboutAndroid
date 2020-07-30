@@ -39,7 +39,8 @@ public class SoundsAdapter extends RecyclerView.Adapter<SoundsAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.tvName.setText(soundList.get(position).getName());
+        holder.tvName.setText(soundList.get(position).getTitle());
+        holder.tvDesc.setText(soundList.get(position).getAlbum());
     }
 
     @Override
