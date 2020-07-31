@@ -63,4 +63,8 @@ dependencies {
     implementation 'cn.jiguang.sdk:jcore:2.4.0'
     implementation 'com.google.code.gson:gson:2.8.6'// 此处以JCore 2.4.0 版本为例。
 
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+
+
 }
