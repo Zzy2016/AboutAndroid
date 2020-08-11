@@ -8,53 +8,8 @@
     tools:context=".activity.TestActivity">
 
 
-    <RelativeLayout
-        android:id="@+id/rl_splash"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="30dp">
 
-        <View
-            android:id="@+id/view_divider"
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:layout_alignParentBottom="true"
 
-            />
-    </RelativeLayout >
 
-<!--    <androidx.viewpager.widget.ViewPager-->
-<!--        android:id="@+id/vp1"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        app:layout_constraintBottom_toTopOf="@id/vp2"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_weight="1"-->
-
-<!--        >-->
-
-<!--        <androidx.viewpager.widget.PagerTabStrip-->
-<!--            android:id="@+id/pagerTabStrip"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            />-->
-
-<!--    </androidx.viewpager.widget.ViewPager>-->
-
-<!--    <androidx.viewpager.widget.ViewPager-->
-<!--        android:id="@+id/vp2"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/vp1"-->
-<!--        app:layout_constraintVertical_weight="1">-->
-
-<!--        <androidx.viewpager.widget.PagerTitleStrip-->
-<!--            android:id="@+id/pagerTitleStrip"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content" />-->
-
-<!--    </androidx.viewpager.widget.ViewPager>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

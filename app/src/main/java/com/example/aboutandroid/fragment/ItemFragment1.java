@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.aboutandroid.Constant;
 import com.example.aboutandroid.adapter.LastSoundAdapter;
 import com.example.aboutandroid.bean.LastSound;
 import com.example.aboutandroid.databinding.FragmentItem1Binding;
@@ -51,6 +50,8 @@ public class ItemFragment1 extends Fragment {
 //        binding.recyclerView.setBackgroundColor(getResources().getColor(R.color.red));
         binding.recyclerView.setAdapter(adapter);
         binding.recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL));
+
+
     }
 
     @Override

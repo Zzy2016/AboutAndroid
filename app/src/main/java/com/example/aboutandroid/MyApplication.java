@@ -13,5 +13,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         SharedPreferencesUtil.getInstance(this,"AboutAndroid");
+
+
     }
 }
