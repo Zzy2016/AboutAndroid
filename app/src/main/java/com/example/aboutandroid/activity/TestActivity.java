@@ -6,6 +6,8 @@ import android.util.Log;
 import com.example.aboutandroid.Constant;
 import com.example.aboutandroid.R;
 
+import java.io.InputStream;
+
 import androidx.appcompat.app.AppCompatActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -65,26 +67,30 @@ public class TestActivity extends AppCompatActivity {
 //        });
 
 
-        Retrofit retrofit1 = new Retrofit.Builder().baseUrl(Constant.baseUrl).addCallAdapterFactory(RxJavaCallAdapterFactory.create()).addConverterFactory(GsonConverterFactory.create()).build();
-        retrofit1.create(ApiService.class).getTopList().enqueue(new Callback() {
-            @Override
-            public void onResponse(Call call, Response response) {
-                try {
-                    if (response.isSuccessful()) {
-                        Log.e(TAG,"success"+response.body().toString());
-                    } else {
-                        Log.e(TAG,"error"+response.body().toString());
-                    }
-                } catch (Exception e) {
-                    Log.e(TAG,"error1"+e.toString());
-                }
-            }
+//        Retrofit retrofit1 = new Retrofit.Builder().baseUrl(Constant.baseUrl).addCallAdapterFactory(RxJavaCallAdapterFactory.create()).addConverterFactory(GsonConverterFactory.create()).build();
+//        retrofit1.create(ApiService.class).getTopList().enqueue(new Callback() {
+//            @Override
+//            public void onResponse(Call call, Response response) {
+//                try {
+//                    if (response.isSuccessful()) {
+//                        Log.e(TAG,"success"+response.body().toString());
+//                    } else {
+//                        Log.e(TAG,"error"+response.body().toString());
+//                    }
+//                } catch (Exception e) {
+//                    Log.e(TAG,"error1"+e.toString());
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call call, Throwable t) {
+//                Log.e(TAG,"onFailure"+t.toString());
+//            }
+//        });
 
-            @Override
-            public void onFailure(Call call, Throwable t) {
-                Log.e(TAG,"onFailure"+t.toString());
-            }
-        });
+
+
+
 
     }
 }
