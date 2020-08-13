@@ -6,9 +6,12 @@ import android.util.Log;
 import com.example.aboutandroid.Constant;
 import com.example.aboutandroid.R;
 
+import java.io.BufferedReader;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -23,13 +26,10 @@ public class TestActivity extends AppCompatActivity {
     private String TAG = "TestActivity--》";
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
-
 
 
 //        RetrofitFactory.create(ApiService.class).getTopList().bindToLifecycle(lifecycleProvider, Lifecycle.Event.ON_DESTROY).enqueue(new Callback() {
@@ -89,7 +89,34 @@ public class TestActivity extends AppCompatActivity {
 //        });
 
 
+//        try {
+//            InputStreamReader inputStreamReader=new InputStreamReader(getResources().openRawResource(R.raw.text));
+//            BufferedReader bufferedReader=new BufferedReader(inputStreamReader);
+//            String line="";
+//            String result="";
+//            while ((line=bufferedReader.readLine())!=null){
+//                result+=line;
+//                Log.e("----",line);
+//            }
+//
+//        }catch (Exception e){
+//
+//        }
 
+
+        try {
+            InputStreamReader inputReader = new InputStreamReader(getResources().getAssets().open("text.txt"));
+            BufferedReader bufReader = new BufferedReader(inputReader);
+            String line = "";
+            String Result = "";
+            while ((line = bufReader.readLine()) != null)
+            {
+                Result += line;
+                Log.e("====", line);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
     }

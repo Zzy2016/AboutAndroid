@@ -1,6 +1,9 @@
 package com.example.aboutandroid.adapter;
 
 import android.content.Context;
+import android.media.MediaPlayer;
+import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +13,7 @@ import android.widget.TextView;
 import com.example.aboutandroid.R;
 import com.example.aboutandroid.bean.Sound;
 
+import java.io.IOException;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -41,6 +45,30 @@ public class SoundsAdapter extends RecyclerView.Adapter<SoundsAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.tvName.setText(soundList.get(position).getTitle());
         holder.tvDesc.setText(soundList.get(position).getAlbum());
+
+        holder.tvName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MediaPlayer mediaPlayer=new MediaPlayer();
+                try {
+                    mediaPlayer.setDataSource(soundList.get(position).getUrl());
+                    mediaPlayer.prepare();
+                    mediaPlayer.start();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        Log.e("wenjian-->",soundList.get(position).getUrl());
+
+
+//        Uri uri=Uri.parse("");
+//        MediaPlayer mediaPlayer=new MediaPlayer();
+//        mediaPlayer.setDataSource(this,uri);
+//        mediaPlayer.prepare();
+//        mediaPlayer.start();
+
     }
 
     @Override
