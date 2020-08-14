@@ -3,21 +3,13 @@ package com.example.aboutandroid.activity;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.aboutandroid.Constant;
+import com.alibaba.fastjson.JSONObject;
 import com.example.aboutandroid.R;
+import com.example.aboutandroid.TopModel;
+import com.example.aboutandroid.util.util;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class TestActivity extends AppCompatActivity {
@@ -104,20 +96,28 @@ public class TestActivity extends AppCompatActivity {
 //        }
 
 
-        try {
-            InputStreamReader inputReader = new InputStreamReader(getResources().getAssets().open("text.txt"));
-            BufferedReader bufReader = new BufferedReader(inputReader);
-            String line = "";
-            String Result = "";
-            while ((line = bufReader.readLine()) != null)
-            {
-                Result += line;
-                Log.e("====", line);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            InputStreamReader inputReader = new InputStreamReader(getResources().getAssets().open("text.txt"));
+//            BufferedReader bufReader = new BufferedReader(inputReader);
+//            String line = "";
+//            String Result = "";
+//            while ((line = bufReader.readLine()) != null)
+//            {
+//                Result += line;
+//                Log.e("====", line);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
+
+        TopModel topModel = JSONObject.parseObject(util.getOriginalFundData(this), TopModel.class);
+        Log.e("=======", topModel.toString());
+
+
+        for (int i = 0; i < topModel.getSong_list().size(); i++) {
+            Log.e("-->", topModel.getSong_list().get(i).getAlbum_title());
+        }
 
     }
 }
