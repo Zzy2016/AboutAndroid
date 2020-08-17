@@ -53,13 +53,6 @@
             android:authorities="com.example.aboutandroid"
             android:exported="true" />
 
-        <activity android:name=".activity.TestActivity" >
-           <!-- <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
-        </activity>
         <activity android:name=".activity.SoundsActivity" />
         <activity android:name=".activity.MainActivity">
             <intent-filter>

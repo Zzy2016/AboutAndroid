@@ -11,11 +11,13 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.aboutandroid.R;
+import com.example.aboutandroid.fragment.ControlBarFragment;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentTransaction;
 
 import static android.view.View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
 import static android.view.WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS;
@@ -31,6 +33,10 @@ public class BaseActivity extends AppCompatActivity {
 
     private Context context;
 
+
+    private ControlBarFragment controlBarFragment;
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,11 +49,15 @@ public class BaseActivity extends AppCompatActivity {
         getWindow().setStatusBarColor(ContextCompat.getColor(this, android.R.color.transparent));
 
 
-        getWindow().getDecorView().setSystemUiVisibility(SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        getWindow().getDecorView().setSystemUiVisibility(SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
 
         context = this;
         initDialog();
+
+        showControlBar(true);
+
+
 
     }
 
@@ -68,4 +78,20 @@ public class BaseActivity extends AppCompatActivity {
         window.setAttributes(layoutParams);
     }
 
+
+    public void showControlBar(boolean show) {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        if (show) {
+            if (controlBarFragment == null) {
+                controlBarFragment = new ControlBarFragment();
+                ft.add(R.id.bottom_container, controlBarFragment).commitAllowingStateLoss();
+            } else {
+                ft.show(controlBarFragment).commitAllowingStateLoss();
+            }
+        } else {
+            if (controlBarFragment != null) {
+                ft.hide(controlBarFragment).commitAllowingStateLoss();
+            }
+        }
+    }
 }

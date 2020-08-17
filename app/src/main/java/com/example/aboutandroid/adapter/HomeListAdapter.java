@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.example.aboutandroid.R;
 import com.example.aboutandroid.activity.SoundsActivity;
-import com.example.aboutandroid.activity.TestActivity;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -51,8 +50,8 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
             @Override
             public void onClick(View v) {
                 if(position==0){
-                    Intent intent = new Intent(context, TestActivity.class);
-                    context.startActivity(intent);
+//                    Intent intent = new Intent(context, TestActivity.class);
+//                    context.startActivity(intent);
                 }else if(position==1){
                     Intent intent = new Intent(context, SoundsActivity.class);
                     context.startActivity(intent);
