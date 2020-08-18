@@ -2,7 +2,6 @@ package com.example.aboutandroid.base;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -14,7 +13,6 @@ import com.example.aboutandroid.R;
 import com.example.aboutandroid.fragment.ControlBarFragment;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentTransaction;
