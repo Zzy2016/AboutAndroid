@@ -52,13 +52,13 @@ public class TopAdapter extends RecyclerView.Adapter<TopAdapter.ViewHolder> {
                 height = 750;
                 break;
             case 2:
-                height = 880;
+                height = 680;
                 break;
             case 3:
                 height = 360;
                 break;
             case 4:
-                height = 660;
+                height = 600;
                 break;
             default:
                 break;
@@ -67,7 +67,9 @@ public class TopAdapter extends RecyclerView.Adapter<TopAdapter.ViewHolder> {
         params.height = height;
         holder.imgItemIcon.setLayoutParams(params);
 
-        holder.tvItemName.setText(listBeans.get(position).getTitle());
+        TopModel.SongListBean item=listBeans.get(position);
+
+        holder.tvItemName.setText(item.getTitle() +"   "+item.getAlbum_title()+"   "+item.getLanguage());
         Glide.with(context).load(listBeans.get(position).getPic_big()).into(holder.imgItemIcon);
     }
 

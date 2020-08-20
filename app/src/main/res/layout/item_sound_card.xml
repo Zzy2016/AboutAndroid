@@ -27,7 +27,9 @@
         android:layout_marginTop="5dp"
         android:gravity="center"
         android:text="text"
-        android:textSize="@dimen/textSize20"
-        app:layout_constraintTop_toBottomOf="@id/imgItemIcon" />
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/imgItemIcon"
+        android:textColor="@color/black"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
