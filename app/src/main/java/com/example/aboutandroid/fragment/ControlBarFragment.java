@@ -39,7 +39,6 @@ public class ControlBarFragment extends Fragment {
         imgPlay = view.findViewById(R.id.imgPlay);
         imgNext = view.findViewById(R.id.imgNext);
         tvName = view.findViewById(R.id.tvName);
-
     }
 
 }
