@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.aboutandroid.R;
 import com.example.aboutandroid.bean.Sound;
+import com.example.aboutandroid.util.MediaPlayerHelper;
 
 import java.io.IOException;
 import java.util.List;
@@ -27,11 +28,13 @@ public class SoundsAdapter extends RecyclerView.Adapter<SoundsAdapter.ViewHolder
 
     private List<Sound> soundList;
     private Context context;
+    private MediaPlayerHelper mediaPlayerHelper;
 
 
     public SoundsAdapter(List<Sound> soundList, Context context) {
         this.soundList = soundList;
         this.context = context;
+        mediaPlayerHelper=new MediaPlayerHelper(context);
     }
 
     @NonNull
@@ -49,14 +52,16 @@ public class SoundsAdapter extends RecyclerView.Adapter<SoundsAdapter.ViewHolder
         holder.tvName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MediaPlayer mediaPlayer=new MediaPlayer();
-                try {
-                    mediaPlayer.setDataSource(soundList.get(position).getUrl());
-                    mediaPlayer.prepare();
-                    mediaPlayer.start();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+//                MediaPlayer mediaPlayer=new MediaPlayer();
+//                try {
+//                    mediaPlayer.setDataSource(soundList.get(position).getUrl());
+//                    mediaPlayer.prepare();
+//                    mediaPlayer.start();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+                mediaPlayerHelper.setPath(soundList.get(position).getUrl());
+                mediaPlayerHelper.start();
             }
         });
 

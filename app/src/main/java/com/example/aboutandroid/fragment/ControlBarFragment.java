@@ -16,7 +16,8 @@ public class ControlBarFragment extends Fragment {
 
 
     private ImageView img1, imgList, imgPlay, imgNext;
-    private TextView tvName;
+    private TextView tvName,tvSonger;
+    private boolean isPlaying;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,21 @@ public class ControlBarFragment extends Fragment {
         imgPlay = view.findViewById(R.id.imgPlay);
         imgNext = view.findViewById(R.id.imgNext);
         tvName = view.findViewById(R.id.tvName);
+        tvSonger=view.findViewById(R.id.tvSonger);
+
+
+        imgPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(isPlaying){
+                    imgPlay.setBackgroundResource(R.drawable.playbar_btn_play);
+                }else {
+                    imgPlay.setBackgroundResource(R.drawable.playbar_btn_pause);
+                }
+                isPlaying=!isPlaying;
+            }
+        });
+
     }
 
 }
