@@ -2,6 +2,7 @@ package com.example.aboutandroid.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +11,10 @@ import android.widget.TextView;
 
 import com.example.aboutandroid.R;
 import com.example.aboutandroid.activity.SoundsActivity;
+import com.example.aboutandroid.services.MyControlService;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
@@ -45,16 +48,25 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
         holder.tvItem.setText(strings[position]);
 
 
-
         holder.tvItem.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
-                if(position==0){
+                if (position == 0) {
 //                    Intent intent = new Intent(context, TestActivity.class);
 //                    context.startActivity(intent);
-                }else if(position==1){
-                    Intent intent = new Intent(context, SoundsActivity.class);
-                    context.startActivity(intent);
+                } else if (position == 1) {
+//                    Intent intent = new Intent(context, SoundsActivity.class);
+//                    context.startActivity(intent);
+                    Intent intent = new Intent(context, MyControlService.class);
+//                    context.startForegroundService(intent);
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        //android8.0以上通过startForegroundService启动service
+                        context.startForegroundService(intent);
+                    } else {
+                        context.startService(intent);
+                    }
                 }
 
             }

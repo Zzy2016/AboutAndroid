@@ -28,6 +28,8 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -37,7 +39,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.NaviDrawActivity"></activity>
+        <service
+            android:name=".services.MyControlService"
+            android:enabled="true"
+            android:exported="true"></service>
+
+        <activity android:name=".activity.NaviDrawActivity" />
         <activity android:name=".activity.LocalSoundActivity">
 
             <!--
