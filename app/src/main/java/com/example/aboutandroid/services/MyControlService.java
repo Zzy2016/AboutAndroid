@@ -5,7 +5,9 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.IBinder;
 import android.view.LayoutInflater;
@@ -16,10 +18,11 @@ import com.example.aboutandroid.R;
 import com.example.aboutandroid.activity.PlayingActivity;
 
 import androidx.annotation.RequiresApi;
+import androidx.core.app.NotificationCompat;
 
 public class MyControlService extends Service {
 
-    private Notification.Builder builder;
+    private NotificationCompat.Builder builder;
     private RemoteViews remoteView;
 
     public MyControlService() {
@@ -35,36 +38,32 @@ public class MyControlService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        Intent intent1 = new Intent(MyControlService.this, PlayingActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
-        remoteView = new RemoteViews(getPackageName(), R.layout.control_view);
 
 
-        remoteView.setTextViewText(R.id.tv_name,"123");
 
-        remoteView.setImageViewResource(R.id.tv_art,R.drawable.logo);
-
-        View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.control_view, null);
-        builder = new Notification.Builder(getApplicationContext()).setContentIntent(pendingIntent)
-                .setContentIntent(pendingIntent) // 设置PendingIntent
-                .setSmallIcon(R.mipmap.ic_launcher) // 设置状态栏内的小图标
-                .setContentTitle(getResources().getString(R.string.app_name)).setContentText("正在上传...") // 设置上下文内容
-                .setWhen(System.currentTimeMillis()); // 设置该通知发生的时间
-
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            NotificationChannel notificationChannel = new NotificationChannel("id", "music", NotificationManager.IMPORTANCE_DEFAULT);
-
-
-//            notificationChannel.enableLights(false);//如果使用中的设备支持通知灯，则说明此通知通道是否应显示灯
-//            notificationChannel.setShowBadge(false);//是否显示角标
-//            notificationChannel.setLockscreenVisibility(Notification.VISIBILITY_SECRET);
-            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-            notificationManager.createNotificationChannel(notificationChannel);
-            builder.setChannelId("id");
+        RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.nitification);
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationCompat.Builder builder;
+        int channelId = 1;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {    //Android 8.0以上适配
+            NotificationChannel channel = new NotificationChannel(String.valueOf(channelId), "channel_name", NotificationManager.IMPORTANCE_HIGH);
+            manager.createNotificationChannel(channel);
+            builder = new NotificationCompat.Builder(getApplicationContext(), String.valueOf(channelId));
+        } else {
+            builder = new NotificationCompat.Builder(getApplicationContext());
         }
 
+        builder.setContentTitle("this is content title")            //指定通知栏的标题内容
+                .setContentText("this is content text")             //通知的正文内容
+                .setWhen(System.currentTimeMillis())                //通知创建的时间
+                .setSmallIcon(R.drawable.ic_launcher_background)    //通知显示的小图标，只能用alpha图层的图片进行设置
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher_background));
+        builder.setContent(remoteViews);
+
         Notification notification = builder.build();
-        startForeground(1, notification);
+//        manager.notify(channelId, notification);
+        startForeground(1,notification);
+
         return super.onStartCommand(intent, flags, startId);
     }
 

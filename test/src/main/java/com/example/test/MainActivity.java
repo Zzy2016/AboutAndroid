@@ -7,11 +7,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.app.Application;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.ImageFormat;
@@ -38,6 +43,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.Permission;
 import java.text.Format;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import static androidx.core.content.PermissionChecker.PERMISSION_GRANTED;
 
@@ -188,6 +196,50 @@ public class MainActivity extends AppCompatActivity {
             }
         }).start();
 
+        aboutPackageManager();
+    }
+
+    public void aboutPackageManager(){
+//        PackageManager pm=getPackageManager();
+//        Intent intent = new Intent(Intent.ACTION_MAIN, null);
+//        intent.addCategory(Intent.CATEGORY_DEFAULT);
+//
+//        // 通过queryIntentActivities获取ResolveInfo对象
+//        List<ResolveInfo> resolveInfos = pm.queryIntentActivities(intent,
+//                PackageManager.MATCH_DEFAULT_ONLY);
+//
+//        // 调用系统排序，根据name排序
+//        // 该排序很重要，否则只能显示系统应用，不能显示第三方应用
+//        // 其实我测试发现有没有其实是一样的，就是输出的顺序是乱的
+//        Collections.sort(resolveInfos,
+//                new ResolveInfo.DisplayNameComparator(pm));
+//
+//        for (ResolveInfo resolveInfo : resolveInfos) {
+//            String appName = resolveInfo.loadLabel(pm).toString();// 获取应用名称
+//            String packageName = resolveInfo.activityInfo.packageName;// 包名
+//            String className = resolveInfo.activityInfo.name;// 入口类名
+//            System.out.println("程序名：" + appName + " 包名:" + packageName
+//                    + " 入口类名：" + className);
+//        }
+
+        // 获取PackageManager对象
+        PackageManager packageManager = getPackageManager();
+        // 得到系统安装的所有程序的PackageInfo对象
+        List<PackageInfo> packages = packageManager.getInstalledPackages(0);
+        // 创建String类型的数组，用来存放获取的包名
+        ArrayList<String> packageList = new ArrayList<String>();
+
+        for (int i = 0; i < packages.size(); i++) {
+            PackageInfo packageInfo = packages.get(i);
+
+            // 判断是否是系统级应用
+            if ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
+                packageList.add(packageInfo.packageName);
+            }else{
+                Log.e("app",packageInfo.packageName);
+            }
+
+        }
     }
 
     public void getToken() {
