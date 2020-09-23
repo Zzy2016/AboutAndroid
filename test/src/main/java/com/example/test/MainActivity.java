@@ -8,11 +8,17 @@ import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import java.util.Collections;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
             myBinder = null;
         }
     };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,7 +132,30 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        PackageManager packageManager=getPackageManager();
+        Log.e("anzhaungbao",packageManager.toString());
 
+
+        Intent intent = new Intent(Intent.ACTION_MAIN, null);
+        intent.addCategory(Intent.CATEGORY_DEFAULT);
+
+        // 通过queryIntentActivities获取ResolveInfo对象
+        List<ResolveInfo> resolveInfos = packageManager.queryIntentActivities(intent,
+                PackageManager.MATCH_DEFAULT_ONLY);
+
+        // 调用系统排序，根据name排序
+        // 该排序很重要，否则只能显示系统应用，不能显示第三方应用
+        // 其实我测试发现有没有其实是一样的，就是输出的顺序是乱的
+        Collections.sort(resolveInfos,
+                new ResolveInfo.DisplayNameComparator(packageManager));
+
+        for (ResolveInfo resolveInfo : resolveInfos) {
+            String appName = resolveInfo.loadLabel(packageManager).toString();// 获取应用名称
+            String packageName = resolveInfo.activityInfo.packageName;// 包名
+            String className = resolveInfo.activityInfo.name;// 入口类名
+            System.out.println("程序名：" + appName + " 包名:" + packageName
+                    + " 入口类名：" + className);
+        }
 
 
     }

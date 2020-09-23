@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.aboutandroid.R;
+import com.example.aboutandroid.bean.Sound;
 
 import androidx.fragment.app.Fragment;
 
@@ -55,6 +56,10 @@ public class ControlBarFragment extends Fragment {
             }
         });
 
+    }
+
+    public void changeInfo(Sound sound){
+        tvName.setText(sound.getTitle());
     }
 
 }

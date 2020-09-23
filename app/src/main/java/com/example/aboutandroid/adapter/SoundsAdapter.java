@@ -62,6 +62,7 @@ public class SoundsAdapter extends RecyclerView.Adapter<SoundsAdapter.ViewHolder
 //                }
                 mediaPlayerHelper.setPath(soundList.get(position).getUrl());
                 mediaPlayerHelper.start();
+
             }
         });
 
