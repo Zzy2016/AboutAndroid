@@ -1,6 +1,11 @@
 package com.example.aboutandroid.fragment;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,21 +13,28 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.aboutandroid.R;
+import com.example.aboutandroid.RefreshMusic;
 import com.example.aboutandroid.bean.Sound;
+import com.example.aboutandroid.util.SharedPreferencesUtil;
 
 import androidx.fragment.app.Fragment;
 
 
-public class ControlBarFragment extends Fragment {
+public class ControlBarFragment extends Fragment implements RefreshMusic {
 
 
     private ImageView img1, imgList, imgPlay, imgNext;
     private TextView tvName,tvSonger;
     private boolean isPlaying;
 
+    private MyReceiver myReceiver;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        myReceiver=new MyReceiver();
+        IntentFilter intentFilter=new IntentFilter();
+        intentFilter.addAction("music_playing");
+        getActivity().registerReceiver(myReceiver,intentFilter);
 
     }
 
@@ -58,8 +70,27 @@ public class ControlBarFragment extends Fragment {
 
     }
 
-    public void changeInfo(Sound sound){
+
+
+    @Override
+    public void changeCurrentMusic(Sound sound) {
         tvName.setText(sound.getTitle());
     }
+
+
+
+    public class MyReceiver extends BroadcastReceiver{
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if(intent.getAction().equals("music_playing")){
+//                Log.e("----",intent.getSerializableExtra("song").toString());
+//                Sound sound= (Sound) SharedPreferencesUtil.getData("currentSong",null);
+                tvName.setText("sound.getTitle()");
+            }
+        }
+    }
+
+
 
 }

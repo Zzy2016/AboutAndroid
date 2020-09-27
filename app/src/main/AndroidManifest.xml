@@ -39,6 +39,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+<!--        <receiver android:name=".fragment.ControlBarFragment$MyReceiver"-->
+<!--            tools:ignore="Instantiatable">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="music_playing"/>-->
+<!--            </intent-filter>-->
+<!--        </receiver>-->
+
         <service
             android:name=".services.MyControlService"
             android:enabled="true"
@@ -47,13 +55,11 @@
         <activity android:name=".activity.NaviDrawActivity" />
         <activity android:name=".activity.LocalSoundActivity">
 
-            <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            -->
         </activity>
         <activity android:name=".activity.SearchActivity" />
 
@@ -64,11 +70,11 @@
 
         <activity android:name=".activity.SoundsActivity" />
         <activity android:name=".activity.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity> <!-- 若您的业务中有使用极光富媒体功能，或者极光早上好功能，需要把此 Activity 的 exported 修改成 true 覆盖 jcenter 上的组件。 -->
         <activity
             android:name="cn.jpush.android.ui.PopWinActivity"

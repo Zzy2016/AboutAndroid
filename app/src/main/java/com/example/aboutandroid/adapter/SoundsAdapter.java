@@ -1,8 +1,11 @@
 package com.example.aboutandroid.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +15,12 @@ import android.widget.TextView;
 
 import com.example.aboutandroid.R;
 import com.example.aboutandroid.bean.Sound;
+import com.example.aboutandroid.services.MyControlService;
 import com.example.aboutandroid.util.MediaPlayerHelper;
+import com.example.aboutandroid.util.SharedPreferencesUtil;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -34,7 +40,7 @@ public class SoundsAdapter extends RecyclerView.Adapter<SoundsAdapter.ViewHolder
     public SoundsAdapter(List<Sound> soundList, Context context) {
         this.soundList = soundList;
         this.context = context;
-        mediaPlayerHelper=new MediaPlayerHelper(context);
+        mediaPlayerHelper = new MediaPlayerHelper(context);
     }
 
     @NonNull
@@ -49,32 +55,42 @@ public class SoundsAdapter extends RecyclerView.Adapter<SoundsAdapter.ViewHolder
         holder.tvName.setText(soundList.get(position).getTitle());
         holder.tvDesc.setText(soundList.get(position).getAlbum());
 
+        SharedPreferencesUtil.putData("currentTitle",soundList.get(position).getTitle());
+        SharedPreferencesUtil.putData("currentAlbum",soundList.get(position).getAlbum());
+        SharedPreferencesUtil.putData("currentSong",soundList.get(position));
+
         holder.tvName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                MediaPlayer mediaPlayer=new MediaPlayer();
-//                try {
-//                    mediaPlayer.setDataSource(soundList.get(position).getUrl());
-//                    mediaPlayer.prepare();
-//                    mediaPlayer.start();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
+
+                //开始播放并且发送广播，更改控制栏和notification内容
+                /*打开notification，需要判断是否开启了*/
                 mediaPlayerHelper.setPath(soundList.get(position).getUrl());
                 mediaPlayerHelper.start();
+
+                Intent intent1=new Intent("music_playing");
+//                Bundle bundle=new Bundle();
+//                bundle.putSerializable("song", (Serializable) soundList.get(position));
+//                intent1.putExtras(bundle);
+                context.sendBroadcast(intent1);
+
+
+
+                Intent intent = new Intent(context, MyControlService.class);
+//                    context.startForegroundService(intent);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    //android8.0以上通过startForegroundService启动service
+//                    context.startForÒegroundService(intent);ÓÓ
+                    context.startForegroundService(intent);
+                } else {
+                    context.startService(intent);
+                }
 
             }
         });
 
-        Log.e("wenjian-->",soundList.get(position).getUrl());
-
-
-//        Uri uri=Uri.parse("");
-//        MediaPlayer mediaPlayer=new MediaPlayer();
-//        mediaPlayer.setDataSource(this,uri);
-//        mediaPlayer.prepare();
-//        mediaPlayer.start();
-
+        Log.e("wenjian-->", soundList.get(position).getUrl());
     }
 
     @Override

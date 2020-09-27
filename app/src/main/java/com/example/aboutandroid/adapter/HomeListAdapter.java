@@ -56,17 +56,17 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
 //                    Intent intent = new Intent(context, TestActivity.class);
 //                    context.startActivity(intent);
                 } else if (position == 1) {
-//                    Intent intent = new Intent(context, SoundsActivity.class);
-//                    context.startActivity(intent);
-                    Intent intent = new Intent(context, MyControlService.class);
-//                    context.startForegroundService(intent);
-
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        //android8.0以上通过startForegroundService启动service
-                        context.startForegroundService(intent);
-                    } else {
-                        context.startService(intent);
-                    }
+                    Intent intent = new Intent(context, SoundsActivity.class);
+                    context.startActivity(intent);
+//                    Intent intent = new Intent(context, MyControlService.class);
+////                    context.startForegroundService(intent);
+//
+//                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//                        //android8.0以上通过startForegroundService启动service
+//                        context.startForegroundService(intent);
+//                    } else {
+//                        context.startService(intent);
+//                    }
                 }
 
             }
