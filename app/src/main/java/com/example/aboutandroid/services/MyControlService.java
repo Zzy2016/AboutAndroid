@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.BitmapFactory;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -37,11 +38,6 @@ public class MyControlService extends Service {
 
 
     public MyControlService() {
-
-
-
-//        Log.e("1", (getApplicationContext() == null) + "");
-        Log.e("1", (getApplication() == null) + "");
     }
 
 
@@ -88,13 +84,24 @@ public class MyControlService extends Service {
 //                .setWhen(System.currentTimeMillis())
         builder             //通知的正文内容
                 .setWhen(System.currentTimeMillis())                //通知创建的时间
-                .setSmallIcon(R.drawable.ic_launcher_background)    //通知显示的小图标，只能用alpha图层的图片进行设置
+                .setSmallIcon(R.drawable.logo)    //通知显示的小图标，只能用alpha图层的图片进行设置
                 .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher_background));
         builder.setContent(remoteViews);
 
+//        remoteViews.setOnClickPendingIntent();
+
+
+        Sound sound= (Sound) intent.getExtras().get("song");
+        if(sound!=null){
+            mediaPlayerHelper.setPath(sound.getUrl());
+            mediaPlayerHelper.start();
+            String [] title=sound.getTitle().split("-");
+            remoteViews.setTextViewText(R.id.tvSoundName,title[0]);
+            remoteViews.setTextViewText(R.id.tvArtist,title[1]);
+        }
 
         Notification notification = builder.build();
-//        manager.notify(channelId, notification);
+
         startForeground(1, notification);
 
         return super.onStartCommand(intent, flags, startId);
@@ -116,7 +123,6 @@ public class MyControlService extends Service {
 
             switch (intent.getAction()) {
                 case "music_playing":
-
                     Sound sound = (Sound) intent.getSerializableExtra("song");
                     mediaPlayerHelper.setPath(sound.getUrl());
                     mediaPlayerHelper.start();
@@ -124,11 +130,9 @@ public class MyControlService extends Service {
                     break;
                 case "sound_stop":
                     mediaPlayerHelper.pause();
-
                     break;
                 case "sound_restart":
-
-
+                    mediaPlayerHelper.start();
                     break;
 
             }

@@ -20,7 +20,9 @@ import com.google.gson.Gson;
 
 import androidx.fragment.app.Fragment;
 
-
+/*
+* 注册广播接收器，接受各类广播，修改控制栏状态
+* */
 public class ControlBarFragment extends Fragment implements RefreshSound {
 
 
@@ -114,6 +116,28 @@ public class ControlBarFragment extends Fragment implements RefreshSound {
 
                 tvName.setText(title[0]);
                 tvSonger.setText(title[1]);
+            }
+
+
+            Sound sound = (Sound) intent.getSerializableExtra("song");
+            String json = (String) SharedPreferencesUtil.getData("currentSong", "");
+            Gson gson = new Gson();
+            String[] title = sound.getTitle().split("-");
+
+
+            String type = intent.getAction();
+            switch (type) {
+                case "music_playing":
+                    tvName.setText(title[0]);
+                    tvSonger.setText(title[1]);
+                    imgPlay.setBackgroundResource(R.drawable.playbar_btn_pause);
+                    break;
+                case "sound_stop":
+                    imgPlay.setBackgroundResource(R.drawable.playbar_btn_play);
+                    break;
+                case "sound_restart":
+                    imgPlay.setBackgroundResource(R.drawable.playbar_btn_pause);
+                    break;
             }
         }
     }

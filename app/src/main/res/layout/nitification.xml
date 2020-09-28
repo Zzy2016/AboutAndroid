@@ -18,16 +18,20 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tvSoundName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:textColor="#333333"
             android:text="歌曲名"
             android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/tvArtist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:textColor="#333333"
             android:text="歌手名" />
     </LinearLayout>
 

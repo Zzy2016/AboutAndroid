@@ -24,7 +24,6 @@ import com.example.aboutandroid.util.MediaPlayerHelper;
 import com.example.aboutandroid.util.SharedPreferencesUtil;
 
 
-
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
@@ -68,7 +67,7 @@ public class SoundsAdapter extends RecyclerView.Adapter<SoundsAdapter.ViewHolder
 
 //        Log.e("current",soundList.get(position).toString());
         JSONObject jsonObject = (JSONObject) JSON.toJSON(soundList.get(position));
-        Log.e("json",jsonObject.toString());
+        Log.e("json", jsonObject.toString());
         SharedPreferencesUtil.putData("currentSong", jsonObject.toString());
 
         holder.item.setOnClickListener(new View.OnClickListener() {
@@ -81,15 +80,19 @@ public class SoundsAdapter extends RecyclerView.Adapter<SoundsAdapter.ViewHolder
 //                mediaPlayerHelper.start();
 
 
-                Intent intent1 = new Intent("music_playing");
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("song", soundList.get(position));
-                intent1.putExtras(bundle);
-                context.sendBroadcast(intent1);
 
 
+
+                /*判断当前前台服务是否开启，
+                 * 没开启 启动前台服务，传递当前播放音乐参数
+                 * 已开启 发送广播，发送当前需要播放的音乐
+                 * */
                 if (!judgeServiceRunning("com.example.aboutandroid.services.MyControlService")) {
                     Intent intent = new Intent(context, MyControlService.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("song", soundList.get(position));
+                    intent.putExtras(bundle);
+
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         //android8.0以上通过startForegroundService启动service
                         context.startForegroundService(intent);
@@ -97,6 +100,13 @@ public class SoundsAdapter extends RecyclerView.Adapter<SoundsAdapter.ViewHolder
                         context.startService(intent);
                     }
                 }
+//
+                Intent intent1 = new Intent("music_playing");
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("song", soundList.get(position));
+                intent1.putExtras(bundle);
+                context.sendBroadcast(intent1);
+
 
             }
         });
