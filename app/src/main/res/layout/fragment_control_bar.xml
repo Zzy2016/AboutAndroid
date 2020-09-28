@@ -53,12 +53,13 @@
 
     <ImageView
         android:id="@+id/imgPlay"
-        android:layout_width="40dp"
+        android:layout_width="36dp"
         android:layout_height="40dp"
         android:layout_marginRight="10dp"
         app:layout_constraintRight_toLeftOf="@id/imgNext"
         app:layout_constraintTop_toTopOf="parent"
         android:background="@drawable/playbar_btn_play"
+        android:scaleType="center"
         />
 
     <ImageView

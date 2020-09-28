@@ -47,8 +47,10 @@
 <!--            </intent-filter>-->
 <!--        </receiver>-->
 
+
+<!--        .services.MyControlService-->
         <service
-            android:name=".services.MyControlService"
+            android:name="com.example.aboutandroid.services.MyControlService"
             android:enabled="true"
             android:exported="true"></service>
 

@@ -70,9 +70,13 @@ public class MainActivity extends AppCompatActivity {
 //    ByteArrayOutputStream image1 = new ByteArrayOutputStream();
 //    ByteArrayOutputStream image2 = new ByteArrayOutputStream();
 //    ByteArrayOutputStream image2 = new ByteArrayOutputStream();
-    ByteArrayOutputStream[] images = new ByteArrayOutputStream[3];
 
-    String[] patients = new String[]{"100123", "100124", "100125"};
+
+
+
+    int length=200;
+    ByteArrayOutputStream[] images = new ByteArrayOutputStream[length];
+    String[] patients = new String[length];
 
     String token = "37_Ij3X3JvgK1wsifC9fZ4JXJpzgP_rbANmOBANUOHAWnG4i4UEXDSRWua5p4dGe2FCcnmgye2miV16QroQQHv9FItwqoXNll54YGqinxfer-X-zS-z4DFubm-lBdlQk6TojkzeRgWwDTxGra_fJIFcACAONK";
 
@@ -173,20 +177,26 @@ public class MainActivity extends AppCompatActivity {
 //                    startService(intent);
 //                }
 
-                try {
-                    for (int i = 0; i < 3; i++) {
-                        File file = new File(getExternalFilesDir("") + patients[i] + ".jpg");
-                        if (!file.exists()) {
-                            file.createNewFile();
-                        }
-                        Bitmap bitmap = BitmapFactory.decodeByteArray(images[i].toByteArray(), 0, images[i].toByteArray().length);
-                        Log.e("Bitmap---", (bitmap == null) + "  " + i);
-                    }
-                } catch (Exception e) {
-                    Log.e("111", e.toString());
-                }
+//                try {
+//                    for (int i = 0; i < 3; i++) {
+//                        File file = new File(getExternalFilesDir("") + patients[i] + ".jpg");
+//                        if (!file.exists()) {
+//                            file.createNewFile();
+//                        }
+//                        Bitmap bitmap = BitmapFactory.decodeByteArray(images[i].toByteArray(), 0, images[i].toByteArray().length);
+//                        Log.e("Bitmap---", (bitmap == null) + "  " + i);
+//                    }
+//                } catch (Exception e) {
+//                    Log.e("111", e.toString());
+//                }
             }
         });
+
+        for(int i=0;i<length;i++){
+            patients[i]="patient"+i;
+//            Log.e("------------",patients[]);
+        }
+
 
         new Thread(new Runnable() {
             @Override
@@ -196,55 +206,55 @@ public class MainActivity extends AppCompatActivity {
             }
         }).start();
 
-        aboutPackageManager();
+//        aboutPackageManager();
     }
 
-    public void aboutPackageManager(){
-//        PackageManager pm=getPackageManager();
-//        Intent intent = new Intent(Intent.ACTION_MAIN, null);
-//        intent.addCategory(Intent.CATEGORY_DEFAULT);
+//    public void aboutPackageManager(){
+////        PackageManager pm=getPackageManager();
+////        Intent intent = new Intent(Intent.ACTION_MAIN, null);
+////        intent.addCategory(Intent.CATEGORY_DEFAULT);
+////
+////        // 通过queryIntentActivities获取ResolveInfo对象
+////        List<ResolveInfo> resolveInfos = pm.queryIntentActivities(intent,
+////                PackageManager.MATCH_DEFAULT_ONLY);
+////
+////        // 调用系统排序，根据name排序
+////        // 该排序很重要，否则只能显示系统应用，不能显示第三方应用
+////        // 其实我测试发现有没有其实是一样的，就是输出的顺序是乱的
+////        Collections.sort(resolveInfos,
+////                new ResolveInfo.DisplayNameComparator(pm));
+////
+////        for (ResolveInfo resolveInfo : resolveInfos) {
+////            String appName = resolveInfo.loadLabel(pm).toString();// 获取应用名称
+////            String packageName = resolveInfo.activityInfo.packageName;// 包名
+////            String className = resolveInfo.activityInfo.name;// 入口类名
+////            System.out.println("程序名：" + appName + " 包名:" + packageName
+////                    + " 入口类名：" + className);
+////        }
 //
-//        // 通过queryIntentActivities获取ResolveInfo对象
-//        List<ResolveInfo> resolveInfos = pm.queryIntentActivities(intent,
-//                PackageManager.MATCH_DEFAULT_ONLY);
+//        // 获取PackageManager对象
+//        PackageManager packageManager = getPackageManager();
+//        // 得到系统安装的所有程序的PackageInfo对象
+//        List<PackageInfo> packages = packageManager.getInstalledPackages(0);
+//        // 创建String类型的数组，用来存放获取的包名
+//        ArrayList<String> packageList = new ArrayList<String>();
 //
-//        // 调用系统排序，根据name排序
-//        // 该排序很重要，否则只能显示系统应用，不能显示第三方应用
-//        // 其实我测试发现有没有其实是一样的，就是输出的顺序是乱的
-//        Collections.sort(resolveInfos,
-//                new ResolveInfo.DisplayNameComparator(pm));
+//        for (int i = 0; i < packages.size(); i++) {
+//            PackageInfo packageInfo = packages.get(i);
 //
-//        for (ResolveInfo resolveInfo : resolveInfos) {
-//            String appName = resolveInfo.loadLabel(pm).toString();// 获取应用名称
-//            String packageName = resolveInfo.activityInfo.packageName;// 包名
-//            String className = resolveInfo.activityInfo.name;// 入口类名
-//            System.out.println("程序名：" + appName + " 包名:" + packageName
-//                    + " 入口类名：" + className);
+//            // 判断是否是系统级应用
+//            if ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
+//                packageList.add(packageInfo.packageName);
+//            }else{
+//                Log.e("app",packageInfo.packageName);
+//            }
+//
 //        }
-
-        // 获取PackageManager对象
-        PackageManager packageManager = getPackageManager();
-        // 得到系统安装的所有程序的PackageInfo对象
-        List<PackageInfo> packages = packageManager.getInstalledPackages(0);
-        // 创建String类型的数组，用来存放获取的包名
-        ArrayList<String> packageList = new ArrayList<String>();
-
-        for (int i = 0; i < packages.size(); i++) {
-            PackageInfo packageInfo = packages.get(i);
-
-            // 判断是否是系统级应用
-            if ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
-                packageList.add(packageInfo.packageName);
-            }else{
-                Log.e("app",packageInfo.packageName);
-            }
-
-        }
-    }
+//    }
 
     public void getToken() {
-        String appid = "wx06928842b7177b6e";
-        String secret = "2cd7cfbd6a1ab81fb86fa0e4a280f3c2";
+        String appid = "wxf47607581149e011";
+        String secret = "cc7aa6caa5bd1406406b6b2c77c3088f";
 //        https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxdd068eab2feb60af&secret=f4e97614b0f37fe3b87e1d91ff246660
         String path = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + appid + "&secret=" + secret;
         try {
@@ -275,7 +285,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void doMakeCode(String token) {
+
+        Log.e("获取图片---》",token);
         for (int i = 0; i < patients.length; i++) {
+            Log.e("获取图片---111》",patients[i]);
             saveImg(token, patients[i], images[i]);
         }
 //        saveImg(token, patients[0]);
@@ -310,15 +323,6 @@ public class MainActivity extends AppCompatActivity {
                 int len = -1;
                 byte[] buffer = new byte[1024];
 
-//                StringBuffer stringBuffer = new StringBuffer();
-//                while ((len = inputStream.read(buffer)) != -1) {
-//                    stringBuffer.append(new String(buffer, 0, len));
-//                }
-//
-//                Log.e("result", stringBuffer.toString());
-
-
-
                 while ((len = inputStream.read(buffer)) != -1) {
                     byteArrayOutputStream.write(buffer, 0, len);
                 }
@@ -341,7 +345,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
 
-                Log.e("获取图片", "1");
+                Log.e("获取图片", "1 "+patient);
             } else {
                 Log.e("获取图片", "2");
             }

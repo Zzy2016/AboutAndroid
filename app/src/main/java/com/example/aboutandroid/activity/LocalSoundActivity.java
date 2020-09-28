@@ -40,10 +40,13 @@ public class LocalSoundActivity extends BaseActivity {
     public void getAllList() {
         ContentResolver contentResolver = getContentResolver();
         Cursor cursor = contentResolver.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, null, null, null);
-//        Cursor cursor=contentResolver.query(MediaStore.Audio.Media.TITLE,null,null,null,null);
-//        Cursor cursor = contentResolver.query(Uri.parse(MediaStore.Audio.Media.DURATION), null, null, null, null);
+
 
         while (cursor.moveToNext()) {
+
+//            for(int i=0;i<cursor.getColumnCount();i++){
+//                Log.e("index--"+i,cursor.getColumnName(i));
+//            }
             Sound sound = new Sound();
             sound.setAlbum(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM)));
             sound.setArtist(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST)));
@@ -52,8 +55,8 @@ public class LocalSoundActivity extends BaseActivity {
             sound.setUrl(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA)));
             sound.setTitle(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.TITLE)));
 
+            Log.e("title",sound.getTitle());
             soundList.add(sound);
-
         }
 
     }

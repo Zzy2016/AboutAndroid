@@ -1,10 +1,12 @@
 package com.example.aboutandroid.bean;
 
+import java.io.Serializable;
+
 /**
  * @author: Administrator
  * @date: 2020-07-17
  */
-public class Sound {
+public class Sound implements Serializable {
     private String displayName;
     private String title;
     private String album;
@@ -69,4 +71,5 @@ public class Sound {
     public void setSize(int size) {
         this.size = size;
     }
+
 }

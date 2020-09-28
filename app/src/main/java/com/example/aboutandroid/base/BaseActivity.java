@@ -91,7 +91,10 @@ public class BaseActivity extends AppCompatActivity {
                 ft.hide(controlBarFragment).commitAllowingStateLoss();
             }
         }
+
     }
+
+
 
 
 }
