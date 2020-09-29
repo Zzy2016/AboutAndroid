@@ -287,11 +287,11 @@ public class MainActivity extends AppCompatActivity {
     public void doMakeCode(String token) {
 
         Log.e("获取图片---》",token);
-        for (int i = 0; i < patients.length; i++) {
-            Log.e("获取图片---111》",patients[i]);
-            saveImg(token, patients[i], images[i]);
-        }
-//        saveImg(token, patients[0]);
+//        for (int i = 0; i < patients.length; i++) {
+//            Log.e("获取图片---111》",patients[i]);
+//            saveImg(token, patients[i], images[i]);
+//        }
+        saveImg(token, "104",images[0]);
     }
 
     public void saveImg(String token, String patient, ByteArrayOutputStream byteArrayOutputStream) {
